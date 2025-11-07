@@ -3,8 +3,9 @@ function nav(){
     const navi=useNavigate();
     return(
         <nav>
-            <h1>ToDo List</h1>
-            <button >Login</button>
+            <h1 onClick={()=>navi("/")}>ToDo List</h1>
+            <button onClick={()=>navi("/")}>Home</button>
+            <button onClick={()=>navi("/login")}>Login</button>
             <button onClick={()=>navi("/signup")}>Sign Up</button>
         </nav>
     )

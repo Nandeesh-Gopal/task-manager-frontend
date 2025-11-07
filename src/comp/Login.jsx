@@ -1,7 +1,8 @@
-import React from "react";
+import Nav from "./Nav";
 function Login() {
     return (
-        <>
+        <>  
+            <Nav/>
             <h1>Login</h1>
             <form>
                 <input type="email" placeholder="abc@gmail.com"/>
