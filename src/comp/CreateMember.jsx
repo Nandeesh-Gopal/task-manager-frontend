@@ -7,10 +7,12 @@ function CreateMember(){
     };
     const handlesubmit=async(e)=>{
         e.preventDefault();
+        const token =localStorage.getItem("token")
         const res= await fetch("http://localhost:5000/create-member",{
             method:"POST",
             headers:{
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                Authorization:`Bearer ${token}`
             },
             body:JSON.stringify(form)
         })

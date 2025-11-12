@@ -12,10 +12,16 @@ function Nav(){
         <nav>
             <h1 onClick={()=>navi("/")}>ToDo List</h1>
             <button onClick={()=>navi("/")}>Home</button>{
-            ses?(<button onClick={handlelogout}>logout</button>):(
+            ses?(
+            <><button onClick={handlelogout}>logout</button>
+                <button onClick={()=>navi("/assign-task")}>Assign Task</button>
+                <button onClick={()=>navi("/view-task")}>View Task</button> 
+                <button onClick={()=>navi("/create-member")}>Create Member</button></>
+            ):(
                 <>
             <button onClick={()=>navi("/login")}>Login</button>
             <button onClick={()=>navi("/signup")}>Sign Up</button>
+            
             </>)}
 
         </nav>

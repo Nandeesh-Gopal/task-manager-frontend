@@ -8,22 +8,45 @@ function Signup() {
     const handlechange=(e)=>{
         setFormdata({...formdata,[e.target.name]:e.target.value})    
     }
-    const handlesubmit = async (e) => {
+    // Frontend improvements
+const handlesubmit = async (e) => {
   e.preventDefault();
+  
+  // Add frontend validation
+  if (!formdata.email || !formdata.password) {
+    alert("Please fill in all fields");
+    return;
+  }
+  
+  if (formdata.password.length < 6) {
+    alert("Password must be at least 6 characters");
+    return;
+  }
+  
   try {
     const res = await fetch("http://localhost:5000/signup", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
-      body: JSON.stringify(formdata),
+      body: JSON.stringify(formdata)
     });
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
 
-    const data = await res.json(); // ✅ res is now a real Response
-    alert(data.message);
+    const data = await res.json();
+    
+    if (data.message === "Database error") {
+      alert("Registration failed. Email may already exist.");
+    } else {
+      alert(data.message);
+      if (data.message === "User registered successfully!") {
+      }
+    }
   } catch (error) {
     console.error("Error:", error);
-    alert("Signup failed!");
+    alert("Signup failed! Please check your connection and try again.");
   }
 };
 
