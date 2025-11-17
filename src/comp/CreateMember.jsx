@@ -1,5 +1,7 @@
 import { useState } from "react";
 import Nav from "./Nav.jsx";
+const host = import.meta.env.VITE_HOST;
+
 function CreateMember(){
     const [form,setForm]= useState({email:"",password:""})
     const handlechange=(e)=>{
@@ -8,7 +10,7 @@ function CreateMember(){
     const handlesubmit=async(e)=>{
         e.preventDefault();
         const token =localStorage.getItem("token")
-        const res= await fetch("http://localhost:5000/create-member",{
+        const res= await fetch(`http://${host}/create-member`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json",

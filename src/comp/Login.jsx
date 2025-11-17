@@ -1,5 +1,6 @@
 import Nav from "./Nav";
 import { useState } from "react";
+const host = import.meta.env.VITE_HOST;
 function Login() {
     const [formdata,setFormdata]=useState({
         email:"",
@@ -11,7 +12,7 @@ function Login() {
     const handlesubmit= async (e)=>{
         e.preventDefault();
         try{
-        const res = await fetch("http://localhost:5000/login",{
+        const res = await fetch(`http://${host}/login`,{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"

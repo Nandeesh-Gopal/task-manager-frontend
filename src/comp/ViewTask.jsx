@@ -1,11 +1,12 @@
 import { useEffect,useState } from "react";
 import Nav from "./Nav.jsx"
+const host = import.meta.env.VITE_HOST;
 function ViewTask(){
     const [tasks,setTasks]=useState([]);
     const token = localStorage.getItem("token");
 
     const fetchTasks= async () =>{
-        const res =await fetch("http://localhost:5000/get-task",{
+        const res =await fetch(`http://${host}/get-task`,{
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -17,7 +18,7 @@ function ViewTask(){
         fetchTasks();
     },[])
     const updateStatus=async (taskId,newStatus)=>{
-        await fetch(`http://localhost:5000/update/${taskId}`,{
+        await fetch(`http://${host}/update/${taskId}`,{
             method:"PUT",
             headers:{
                 "Content-Type":"application/json",

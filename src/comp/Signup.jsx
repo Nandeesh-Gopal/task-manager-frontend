@@ -1,5 +1,6 @@
 import Nav from "./Nav";
 import { useState } from "react";
+const host = import.meta.env.VITE_HOST;
 function Signup() {
     const [formdata,setFormdata]=useState({
         email:"",
@@ -24,7 +25,7 @@ const handlesubmit = async (e) => {
   }
   
   try {
-    const res = await fetch("http://localhost:5000/signup", {
+    const res = await fetch(`http://${host}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
